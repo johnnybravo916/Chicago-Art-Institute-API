@@ -1,0 +1,17 @@
+h1 {
+    margin: 20px 0;
+    display: block;
+    text-align: center;
+}
+
+.wrapper {
+    text-align: center
+}
+
+button {
+    padding: 5px 20px;
+    border: none;
+    text-transform: uppercase;
+    margin:20px auto 50px;
+    display:block
+}
