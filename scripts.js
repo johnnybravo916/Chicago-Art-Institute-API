@@ -1,5 +1,4 @@
-const url = "https://api.harvardartmuseums.org/image/";
-const apiKey = "15b60412-f8a3-4d9c-80c7-f8e192c3d6f9";
+const url = "https://api.artic.edu/api/v1/artworks";
 
 const title = document.querySelector("#js-title");
 const img = document.querySelector("#js-img");
@@ -12,52 +11,21 @@ const getRandom = () => {
 };
 
 const getArt = (code) => {
-    fetch(`${url}${code}?apikey=${apiKey}`)
+    fetch(`${url}`)
         .then((response) => {
-            //ALWAYS REMEMBER TO RETURN UNLESS YOU USE THE SHORTCUT
-            //response => resonse.json()
             if (response.status !== 200) {
-                getArt(getRandom());
+               console.log("success")
             }
             return response.json();
         })
         .then((data) => {
-            if (data.error == "Not found" || data.error == "Not Authorized") {
-                getArt(getRandom());
-            } else {
-                title.innerHTML = data.alttext;
-                img.alt = data.alttext;
-                img.src = data.baseimageurl;
-                description.innerHTML = data.description;
-            }
+            iiif_endpoint = data.config.iiif_url
+            image_url = data.data[0].image_id
+            img.src = `${iiif_endpoint}/${image_url}/full/843,/0/default.jpg`
         });
 };
 
-getArt(getRandom());
+getArt();
 bttn.addEventListener("click", (e)=>{
     getArt(getRandom());
 });
-
-fetch("https://api.harvardartmuseums.org/gallery?apikey=15b60412-f8a3-4d9c-80c7-f8e192c3d6f9")
-    .then(
-        response => response.json()
-    )
-    .then((data)=>{
-        console.log(data.records)
-        let dataset = data.records
-        //for
-        // for (let i=0;i<data.records.length;i++){
-        //     console.log(data.records[i])
-        // }
-        //forEach
-        // dataset.forEach((gallery, i) => {
-        //     console.log(gallery)
-        // })
-        //for of
-        // for(gallery of dataset){
-        //     console.log(gallery)
-        // }
-        dataset.map((gallery, i)=>{
-            console.log(gallery, i)
-        })
-    })
