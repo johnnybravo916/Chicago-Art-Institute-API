@@ -8,23 +8,51 @@ body {
     font: var(--light) 1rem/1.5 'Lexend', sans-serif;
 }
 
+img{max-width:100%;height:auto}
+
 h1 {
-    border-top:2px solid #000;
-    border-bottom:2px solid #000;
-    padding:20px 0;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding: 20px 0;
     margin: 20px 0;
     display: block;
-    font-size:3rem;
+    font-size: 3rem;
+    font-weight: var(--bold)
 }
 
-.wrapper {
-    text-align: center
+h2 {
+    display: block;
 }
 
-button {
-    padding: 5px 20px;
-    border: none;
-    text-transform: uppercase;
-    margin: 20px auto 50px;
+strong {
     display: block
 }
+
+em {
+    display: block
+}
+
+.container{
+    column-count:4;
+    column-gap: 20px;
+}
+
+.artblock{
+    display:grid;
+    grid-template-rows: 1fr;
+    break-inside: avoid;
+}
+
+@media only screen and (max-width: 900px) {
+    .container{
+        column-count:2;
+        column-gap: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .container{
+        column-count:1;
+        column-gap: 20px;
+    }
+  }
