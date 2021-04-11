@@ -16,14 +16,12 @@ const getArt = (code) => {
         .then((response) => {
             //ALWAYS REMEMBER TO RETURN UNLESS YOU USE THE SHORTCUT
             //response => resonse.json()
-            console.log(response);
             if (response.status !== 200) {
                 getArt(getRandom());
             }
             return response.json();
         })
         .then((data) => {
-            console.log(data);
             if (data.error == "Not found" || data.error == "Not Authorized") {
                 getArt(getRandom());
             } else {
@@ -39,3 +37,27 @@ getArt(getRandom());
 bttn.addEventListener("click", (e)=>{
     getArt(getRandom());
 });
+
+fetch("https://api.harvardartmuseums.org/gallery?apikey=15b60412-f8a3-4d9c-80c7-f8e192c3d6f9")
+    .then(
+        response => response.json()
+    )
+    .then((data)=>{
+        console.log(data.records)
+        let dataset = data.records
+        //for
+        // for (let i=0;i<data.records.length;i++){
+        //     console.log(data.records[i])
+        // }
+        //forEach
+        // dataset.forEach((gallery, i) => {
+        //     console.log(gallery)
+        // })
+        //for of
+        // for(gallery of dataset){
+        //     console.log(gallery)
+        // }
+        dataset.map((gallery, i)=>{
+            console.log(gallery, i)
+        })
+    })
