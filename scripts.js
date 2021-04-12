@@ -25,17 +25,18 @@ const getArt = (code) => {
             image_url = data.data[0].image_id;
             //img.src = `${iiif_endpoint}/${image_url}/full/843,/0/default.jpg`;
             data.data.map((art) => {
-                console.log(art);
+                const {image_id, title, artist_title, date_display, artist_display} = art;
+                console.log(art)
                 return (block.innerHTML += `
                     <div class="artblock">
                         <h2 class="artblock__title">
-                        ${art.title}
+                        ${title}
                         </h2>
-                        <img id="#js-img" src="${iiif_endpoint}/${art.image_id}/full/843,/0/default.jpg" alt="${art.title}"/>
+                        <img id="#js-img" src="${iiif_endpoint}/${image_id}/full/843,/0/default.jpg" alt="${title}"/>
                         <div class="artblock__details">
-                            <strong> ${art.artist_title}</strong>
-                            <em> ${art.date_display}</em>
-                            <p> ${art.artist_display}</p>
+                            <strong> ${artist_title}</strong>
+                            <em> ${date_display}</em>
+                            <p> ${artist_display}</p>
                         </div>
                     </div>
                     `);
